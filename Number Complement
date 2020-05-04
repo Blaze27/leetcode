@@ -1,0 +1,6 @@
+import math
+class Solution:
+    def findComplement(self, num: int) -> int:
+        
+        n = (int)(math.floor(math.log(num) / math.log(2))) + 1
+        return ((1 << n) - 1) ^ num;
