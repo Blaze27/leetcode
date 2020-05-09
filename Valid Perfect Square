@@ -1,0 +1,13 @@
+class Solution:
+    def isPerfectSquare(self, num: int) -> bool:
+        if num == 1:
+            return True
+        i = 1
+        sum = 0
+        while sum < num:
+            sum +=i
+            if sum == num:
+                return True
+            i+=2
+        return False
+        
