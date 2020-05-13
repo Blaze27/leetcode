@@ -1,0 +1,19 @@
+class Solution:
+    def removeKdigits(self, num: str, k: int) -> str:
+        s = []
+        kk = k
+        for i in num:
+            while kk and s and s[-1] > i:
+                s.pop()
+                kk= kk - 1
+            s.append(i)
+        
+        a = "".join(s[0:len(num)-k]).lstrip("0")
+        if len(a):
+            return a
+        else:
+            return "0"
+            
+                
+            
+        
