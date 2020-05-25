@@ -1,0 +1,14 @@
+class Solution:
+    def maxUncrossedLines(self, A: List[int], B: List[int]) -> int:
+        a,b = len(A), len(B)
+        dp = [ [0 for i in range(b+1)] for j in range(a+1)]
+        for i in range(a):
+            for j in range(b):
+                if A[i] == B[j]:
+                    dp[i+1][j+1] = 1 + dp[i][j]
+                else:
+                    dp[i+1][j+1] = max(dp[i+1][j], dp[i][j+1])
+        return dp[a][b]
+                
+        
+        
