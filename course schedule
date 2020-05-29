@@ -1,0 +1,29 @@
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        indeg = collections.defaultdict(set)
+        outdeg = collections.defaultdict(set)
+        
+        for x, y in prerequisites:
+            indeg[y].add(x)
+            outdeg[x].add(y)
+            
+        conn_rem = 0
+        
+        indeg_zero = []
+        
+        for i in range(numCourses):
+            if not indeg[i]:
+                indeg_zero.append(i)
+                conn_rem += 1
+        
+        while indeg_zero:
+            node = indeg_zero.pop()
+            
+            for x in outdeg[node]:
+                indeg[x].remove(node)
+                if not indeg[x]:
+                    indeg_zero.append(x)
+                    conn_rem += 1
+        
+        return conn_rem == numCourses
+        
